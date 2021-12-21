@@ -1,0 +1,58 @@
+@charset "ISO-8859-1";
+body {
+  background-color: #D58E1A;
+  background-image:url("/grupalJPA/res/img/seguridadBackground.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Varela Round', sans-serif; 
+}
+
+
+h1{
+	margin-top: 100px;
+	font-size: 80px;
+}
+h2 {
+	margin-top: 50px;
+	font-weight: bolder;
+}
+
+ .editCapa {
+ 	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+ 	border-radius: 30px;
+ }
+ 
+ .editCapa .btn {
+  display: flex;
+  margin-left: auto; 
+  margin-right: auto;
+ }
+ 
+ .btn-group{
+ 	display: flex;
+ 	margin-left: auto;
+ 	margin-right: auto;
+ }
+
+footer {
+	background-color: #212529;
+	color: white;
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+#login .container #login-row #login-column #login-box {
+  margin-top: 120px;
+  max-width: 600px;
+  height: 320px;
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA;
+}
+#login .container #login-row #login-column #login-box #login-form {
+  padding: 20px;
+}
+#login .container #login-row #login-column #login-box #login-form #register-link {
+  margin-top: -85px;
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<bean:beans xmlns:bean="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/security
+			http://www.springframework.org/schema/security/spring-security.xsd">
+	<http  auto-config="true">
+		<intercept-url pattern="/" access="permitAll"/>
+		
+		<!-- ACCESO A CLIENTES -->
+		<intercept-url pattern="/contacto" access="hasAnyAuthority('ADMIN','CLIENTE')"/>
+		<intercept-url pattern="/capacitacion" access="hasAnyAuthority('ADMIN', 'CLIENTE')"/>
+		<intercept-url pattern="/capacitacionEdit" access="hasAnyAuthority('ADMIN', 'CLIENTE')"/>
+		
+		<intercept-url pattern="/cliente*" access="hasAnyAuthority('ADMIN', 'ADMINISTRATIVO')"/>
+		<intercept-url pattern="/profesional*" access="hasAnyAuthority('ADMIN', 'ADMINISTRATIVO')"/>
+		<intercept-url pattern="/administrativo*" access="hasAnyAuthority('ADMIN', 'ADMINISTRATIVO')"/>
+		<intercept-url pattern="/editarCliente" access="hasAnyAuthority('ADMIN', 'ADMINISTRATIVO')"/>
+		<intercept-url pattern="/editarProfesional" access="hasAnyAuthority('ADMIN', 'ADMINISTRATIVO')"/>
+		<intercept-url pattern="/editarAdministrativo" access="hasAnyAuthority('ADMIN', 'ADMINISTRATIVO')"/>
+		<intercept-url pattern="/pago*" access="hasAnyAuthority('ADMIN', 'ADMINISTRATIVO')"/>
+
+		<intercept-url pattern="/visita*" access="hasAnyAuthority('ADMIN', 'PROFESIONAL')"/>
+		<intercept-url pattern="/visitaCheck" access="hasAnyAuthority('ADMIN', 'PROFESIONAL')"/>
+		
+		<intercept-url pattern="/adminPage" access="hasAnyAuthority('ADMIN')"/>
+		<intercept-url pattern="/userPage" access="hasAnyAuthority('ADMIN', 'USER')"/>
+		
+		<form-login login-page="/login"
+			authentication-failure-url="/error" 
+			username-parameter="username"
+			password-parameter="password"/>
+		<csrf disabled="true"/>
+		<logout logout-success-url="/login" />
+			
+	</http>	
+	
+	<authentication-manager>
+		<authentication-provider>
+			<password-encoder hash="bcrypt"/>
+			  	<user-service>
+				<user name="admin" authorities="ADMIN" password="$2a$10$WAMmEeybc4tFEAh30j8OQ./6NJ6PMks2y4Fo/PKcrlNV5I3t9pGDG"/>
+				<user name="administrativo" authorities="ADMINISTRATIVO" password="$2a$10$AIyTRiqbLGwvEW0Q8E5O5eoAsD8W6rLpsSW17RGhuFl2i8Ylo7mJi"/>
+				<user name="cliente" authorities="CLIENTE" password="$2a$10$AIyTRiqbLGwvEW0Q8E5O5eoAsD8W6rLpsSW17RGhuFl2i8Ylo7mJi"/>
+				<user name="profesional" authorities="PROFESIONAL" password="$2a$10$AIyTRiqbLGwvEW0Q8E5O5eoAsD8W6rLpsSW17RGhuFl2i8Ylo7mJi"/>
+				</user-service>
+		</authentication-provider> 
+	</authentication-manager>	
+
+</bean:beans>
+
